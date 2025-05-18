@@ -1,0 +1,2 @@
+access_gregs_service_trip,gregs.service_trip,model_gregs_service_trip,base.group_user,1,1,1,1
+access_gregs_service_team,gregs.service_team,model_gregs_service_team,base.group_user,1,1,1,1

@@ -1,0 +1,1 @@
+// OWL/JS code for drag&drop and calendar functionality

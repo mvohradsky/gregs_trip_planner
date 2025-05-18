@@ -1,1 +1,45 @@
-<!-- Views XML for Service Team -->
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <!-- Form View pro Service Team -->
+    <record id="gregs_service_team_form_view" model="ir.ui.view">
+        <field name="name">gregs.service.team.form</field>
+        <field name="model">gregs.service_team</field>
+        <field name="arch" type="xml">
+            <form string="Service Team">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="user_ids" widget="many2many_tags"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Tree View pro Service Team -->
+    <record id="gregs_service_team_tree_view" model="ir.ui.view">
+        <field name="name">gregs.service.team.tree</field>
+        <field name="model">gregs.service_team</field>
+        <field name="arch" type="xml">
+            <tree string="Service Teams">
+                <field name="name"/>
+                <field name="user_ids" widget="many2many_tags"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Action pro Service Team -->
+    <record id="gregs_service_team_action" model="ir.actions.act_window">
+        <field name="name">Týmy techniků</field>
+        <field name="res_model">gregs.service_team</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Vytvořte nový tým techniků kliknutím na "Vytvořit".</p>
+        </field>
+    </record>
+
+    <!-- Menuitem pro Service Team -->
+    <menuitem id="gregs_service_team_menu" name="Týmy techniků" action="gregs_service_team_action" sequence="20" parent="project.menu_project_configuration"/>
+
+</odoo>

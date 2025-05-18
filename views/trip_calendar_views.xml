@@ -1,1 +1,38 @@
-<!-- Calendar Views XML -->
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <!-- Pokročilý kalendářový pohled pro výjezdy -->
+    <record id="gregs_service_trip_advanced_calendar_view" model="ir.ui.view">
+        <field name="name">gregs.service.trip.advanced.calendar</field>
+        <field name="model">gregs.service_trip</field>
+        <field name="arch" type="xml">
+            <calendar string="Výjezdy"
+                      date_start="start_datetime"
+                      date_stop="end_datetime"
+                      color="team_id"
+                      event_open_popup="true"
+                      quick_add="false"
+                      js_class="trip_calendar_renderer">
+                <field name="name"/>
+                <field name="team_id"/>
+                <field name="responsible_user_id"/>
+                <field name="vehicle_id"/>
+                <field name="contact_person"/>
+                <field name="contact_phone"/>
+                <field name="location_address"/>
+            </calendar>
+        </field>
+    </record>
+
+    <!-- Action pro pokročilý kalendář výjezdů -->
+    <record id="gregs_service_trip_advanced_calendar_action" model="ir.actions.act_window">
+        <field name="name">Kalendář výjezdů</field>
+        <field name="res_model">gregs.service_trip</field>
+        <field name="view_mode">calendar</field>
+        <field name="view_id" ref="gregs_service_trip_advanced_calendar_view"/>
+    </record>
+
+    <!-- Menuitem pro kalendář výjezdů -->
+    <menuitem id="gregs_service_trip_calendar_menu" name="Kalendář výjezdů" action="gregs_service_trip_advanced_calendar_action" sequence="15" parent="project.menu_project_management"/>
+
+</odoo>

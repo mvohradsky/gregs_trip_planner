@@ -1,9 +1,14 @@
-
 {
     'name': 'Gregs Trip Planner',
-    'version': '1.0',
+    'version': '1.3',
     'category': 'Services',
-    'summary': 'Service trips and scheduling for Gregs',
+    'summary': 'Plánování a správa servisních výjezdů',
+    'description': """
+        Modul umožňuje efektivní plánování a řízení servisních a montážních výjezdů.
+        Zahrnuje kalendář, drag-and-drop plánování, týmovou správu a mobilní rozhraní pro techniky.
+    """,
+    'author': 'Gregs s.r.o.',
+    'website': 'https://www.gregs.cz',
     'depends': ['project', 'fleet'],
     'data': [
         'security/ir.model.access.csv',
@@ -15,10 +20,10 @@
     ],
     'assets': {
         'web.assets_backend': [
-            '/gregs_trip_planner/static/src/js/trip_calendar.js'
-        ]
+            'gregs_trip_planner/static/src/js/trip_calendar.js'
+        ],
     },
     'installable': True,
     'application': True,
-    'license': 'LGPL-3'
+    'license': 'LGPL-3',
 }

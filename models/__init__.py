@@ -1,1 +1,4 @@
-from . import project_task, service_trip, service_team, fleet_vehicle
+from . import service_trip
+from . import service_team
+from . import fleet_vehicle
+from . import project_task

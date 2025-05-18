@@ -1,1 +1,83 @@
-<!-- Views XML for Service Trip -->
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <!-- Form View pro Výjezd -->
+    <record id="gregs_service_trip_form_view" model="ir.ui.view">
+        <field name="name">gregs.service.trip.form</field>
+        <field name="model">gregs.service_trip</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button string="Naplánováno" type="object" name="set_state_planned"
+                            invisible="[('state','=','planned')]"/>
+                    <button string="Probíhá" type="object" name="set_state_in_progress"
+                            invisible="[('state','=','in_progress')]"/>
+                    <button string="Hotovo" type="object" name="set_state_done"
+                            invisible="[('state','=','done')]"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="task_id"/>
+                        <field name="start_datetime"/>
+                        <field name="end_datetime"/>
+                        <field name="team_id"/>
+                        <field name="responsible_user_id"/>
+                        <field name="vehicle_id"/>
+                    </group>
+                    <group string="Kontaktní informace">
+                        <field name="contact_person"/>
+                        <field name="contact_phone" widget="phone"/>
+                        <field name="location_address"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Tree View pro Výjezd -->
+    <record id="gregs_service_trip_tree_view" model="ir.ui.view">
+        <field name="name">gregs.service.trip.tree</field>
+        <field name="model">gregs.service_trip</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="task_id"/>
+                <field name="start_datetime"/>
+                <field name="end_datetime"/>
+                <field name="team_id"/>
+                <field name="responsible_user_id"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Calendar View pro Výjezd -->
+    <record id="gregs_service_trip_calendar_view" model="ir.ui.view">
+        <field name="name">gregs.service.trip.calendar</field>
+        <field name="model">gregs.service_trip</field>
+        <field name="arch" type="xml">
+            <calendar date_start="start_datetime" date_stop="end_datetime" color="team_id">
+                <field name="name"/>
+                <field name="responsible_user_id"/>
+            </calendar>
+        </field>
+    </record>
+
+    <!-- Action pro Výjezd -->
+    <record id="gregs_service_trip_action" model="ir.actions.act_window">
+        <field name="name">Výjezdy</field>
+        <field name="res_model">gregs.service_trip</field>
+        <field name="view_mode">calendar,tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Začněte plánovat své výjezdy kliknutím na "Vytvořit".</p>
+        </field>
+    </record>
+
+    <!-- Menuitem pro Výjezd -->
+    <menuitem id="gregs_service_trip_menu" name="Výjezdy"
+              action="gregs_service_trip_action" sequence="10"
+              parent="project.menu_project_management"/>
+
+</odoo>

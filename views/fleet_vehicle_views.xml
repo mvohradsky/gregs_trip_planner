@@ -1,1 +1,42 @@
-<!-- Views XML for Fleet Vehicle extension -->
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <!-- Rozšíření formuláře vozidla -->
+    <record id="fleet_vehicle_form_inherit_service_vehicle" model="ir.ui.view">
+        <field name="name">fleet.vehicle.form.inherit.service.vehicle</field>
+        <field name="model">fleet.vehicle</field>
+        <field name="inherit_id" ref="fleet.fleet_vehicle_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet/group[1]" position="after">
+                <group string="Výjezdy">
+                    <field name="is_service_vehicle"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Rozšíření stromového pohledu vozidel -->
+    <record id="fleet_vehicle_tree_inherit_service_vehicle" model="ir.ui.view">
+        <field name="name">fleet.vehicle.tree.inherit.service.vehicle</field>
+        <field name="model">fleet.vehicle</field>
+        <field name="inherit_id" ref="fleet.fleet_vehicle_view_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='license_plate']" position="after">
+                <field name="is_service_vehicle"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Rozšíření filtru vozidel -->
+    <record id="fleet_vehicle_search_inherit_service_vehicle" model="ir.ui.view">
+        <field name="name">fleet.vehicle.search.inherit.service.vehicle</field>
+        <field name="model">fleet.vehicle</field>
+        <field name="inherit_id" ref="fleet.view_fleet_vehicle_search"/>
+        <field name="arch" type="xml">
+            <xpath expr="//filter[@name='active']" position="after">
+                <filter string="Montážní vozidla" name="is_service_vehicle" domain="[('is_service_vehicle','=',True)]"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
